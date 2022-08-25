@@ -3,7 +3,7 @@
 	import type { delimaUser, AuthUser } from '$lib/types';
 	import { clickToCopy } from '$lib/action/clickToCopy';
 	import { focusSearchInput } from '$lib/stores';
-	import logoSuri from '/src/favicon.svg';
+	import logo from '/src/favicon.svg';
 
 	export const prerender = true;
 	export let data;
@@ -26,7 +26,7 @@
 	{#if username}
 		Akses: {username.toUpperCase()}
 	{/if}
-	<img class=" w-5 h-5" src={logoSuri} alt="logo sksuri" />
+	<img class=" w-5 h-5" src={logo} alt="logo" />
 </section>
 <section class="mt-2 mb-4">
 	<input

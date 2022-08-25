@@ -61,6 +61,7 @@ export const delima = [
 ```
 - [ ] Change the title in `app.html`
 - [ ] Replace the `favicon.svg`  file in `src` folder
+- [ ] Replace footer in `src/routes/+layout.svelte
 - [ ] Create a `.env` file in the root folder, change the `test` and `1234` for username and password. You can add more user.
 
 ```
