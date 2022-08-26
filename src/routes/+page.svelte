@@ -3,10 +3,10 @@
 	import type { delimaUser, AuthUser } from '$lib/types';
 	import { clickToCopy } from '$lib/action/clickToCopy';
 	import { focusSearchInput } from '$lib/stores';
+	import type { LayoutServerData } from './$types';
 	import logo from '/src/favicon.svg';
 
-	export const prerender = true;
-	export let data;
+	export let data: LayoutServerData;
 	const { username } = data.user as AuthUser;
 	let q = '';
 	let list = delima;
