@@ -40,7 +40,10 @@
 		type="text"
 	/>
 	<BackspaceButton
-		on:click={() => (q = '')}
+		on:click={() => {
+			q = '';
+			searchInput.focus();
+		}}
 		{show}
 		class="w-10 h-10 text-gray-200 absolute hover:text-gray-400  right-6 top-2"
 	/>
