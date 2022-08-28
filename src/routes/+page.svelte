@@ -5,6 +5,7 @@
 	import { focusSearchInput } from '$lib/stores';
 	import type { LayoutServerData } from './$types';
 	import logo from '/src/favicon.svg';
+	import BackspaceButton from '$lib/components/BackspaceButton.svelte';
 
 	export let data: LayoutServerData;
 	const { username } = data.user as AuthUser;
@@ -19,6 +20,8 @@
 		searchInput.focus();
 		focusSearchInput.set(false);
 	}
+
+	$: show = q.length > 0;
 </script>
 
 <section class="flex gap-5 justify-between">
@@ -28,13 +31,18 @@
 	{/if}
 	<img class=" w-5 h-5" src={logo} alt="logo" />
 </section>
-<section class="mt-2 mb-4">
+<section class="mt-2 mb-4 relative flex items-center">
 	<input
 		bind:this={searchInput}
 		placeholder="Type Nama.."
-		class="h-14 w-full rounded-md p-4 text-lg shadow-md"
+		class="h-14 w-full rounded-md pl-4 pr-20 py-4 text-lg shadow-md"
 		bind:value={q}
 		type="text"
+	/>
+	<BackspaceButton
+		on:click={() => (q = '')}
+		{show}
+		class="w-10 h-10 text-gray-200 absolute hover:text-gray-400  right-6 top-2"
 	/>
 </section>
 
