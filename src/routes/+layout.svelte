@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.postcss';
+	import '../app.css';
 	import SearchButton from '$lib/components/SearchButton.svelte';
 	import { focusSearchInput } from '$lib/stores';
 	import { useDebounce } from '$lib/utils';
