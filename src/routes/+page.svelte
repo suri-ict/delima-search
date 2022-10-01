@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { blur } from 'svelte/transition';
 	import { delima } from '$lib/records/delima';
 	import type { delimaUser, AuthUser } from '$lib/types';
 	import { clickToCopy } from '$lib/action/clickToCopy';
@@ -11,16 +12,39 @@
 	const { username } = data.user as AuthUser;
 	let q = '';
 	let list = delima;
+	let toggleMicrosoft = false;
+
 	let startsWith = (item: delimaUser, query: string) =>
 		item.name.toLowerCase().indexOf(query.toLowerCase()) != -1;
 	let searchInput: HTMLInputElement;
-	$: filteredList = q && q.length ? list.filter((item) => startsWith(item, q)) : list;
 
 	$: if ($focusSearchInput) {
 		searchInput.focus();
 		focusSearchInput.set(false);
 	}
 
+	const emailStartWithgm = (email: string) => {
+		return email.startsWith('g-') || email.startsWith('m-');
+	};
+
+	$: {
+		if (!toggleMicrosoft) {
+			list = list.map((item) => {
+				if (emailStartWithgm(item.email)) {
+					item.email = item.email.replace('@sarawak.moe-dl.edu.my', '@moe-dl.edu.my');
+				}
+				return item;
+			});
+		} else {
+			list = list.map((item) => {
+				if (emailStartWithgm(item.email)) {
+					item.email = item.email.replace('@moe-dl.edu.my', '@sarawak.moe-dl.edu.my');
+				}
+				return item;
+			});
+		}
+	}
+	$: filteredList = q && q.length ? list.filter((item) => startsWith(item, q)) : list;
 	$: show = q.length > 0;
 </script>
 
@@ -30,6 +54,15 @@
 		Akses: {username.toUpperCase()}
 	{/if}
 	<img class=" w-5 h-5" src={logo} alt="logo" />
+	<button on:click={() => (toggleMicrosoft = !toggleMicrosoft)}>
+		{#if toggleMicrosoft}
+			<span in:blur|local>✅</span>
+		{:else}
+			<span in:blur|local>🔲</span>
+		{/if}
+
+		Microsoft</button
+	>
 </section>
 <section class="mt-2 mb-4 relative flex items-center">
 	<input
