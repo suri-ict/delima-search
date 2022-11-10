@@ -7,7 +7,8 @@
 	import type { LayoutServerData } from './$types';
 	import logo from '/src/favicon.svg';
 	import BackspaceButton from '$lib/components/BackspaceButton.svelte';
-
+	import { Fzf } from 'fzf';
+	import { onMount } from 'svelte';
 	export let data: LayoutServerData;
 	const { username } = data.user as AuthUser;
 	let q = '';
@@ -44,7 +45,12 @@
 			});
 		}
 	}
-	$: filteredList = q && q.length ? list.filter((item) => startsWith(item, q)) : list;
+
+	const fzf = new Fzf(list, { selector: (item) => `${item.name} (${item.email})` });
+
+	$: entries = fzf.find(q);
+	$: filteredList = q && q.length ? entries.map((entry) => entry.item) : list;
+
 	$: show = q.length > 0;
 </script>
 
@@ -67,7 +73,7 @@
 <section class="mt-2 mb-4 relative flex items-center">
 	<input
 		bind:this={searchInput}
-		placeholder="Type Nama.."
+		placeholder="Type nama atau email.."
 		class="h-14 w-full rounded-md pl-4 pr-20 py-4 text-lg shadow-md"
 		bind:value={q}
 		type="text"
