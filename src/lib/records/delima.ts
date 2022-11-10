@@ -7,17 +7,17 @@ export const delima = [
 	{
 		name: 'ALI',
 		prefix: 'KPM-Guru',
-		email: 'g-12345678@moe-dl.edu.my'
+		email: 'g-56789823@moe-dl.edu.my'
 	},
 	{
 		name: 'AKAU',
 		prefix: 'Moe',
-		email: 'g-12345678@moe-dl.edu.my'
+		email: 'g-19902148@moe-dl.edu.my'
 	},
 	{
 		name: 'MUTU',
 		prefix: 'Moe',
-		email: 'g-1245678@moe-dl.edu.my'
+		email: 'g-89120312@moe-dl.edu.my'
 	},
 	{
 		name: 'JOE',
@@ -32,12 +32,12 @@ export const delima = [
 	{
 		name: 'MAYA',
 		prefix: 'Moe',
-		email: 'g-12345678@moe-dl.edu.my'
+		email: 'g-32189900@moe-dl.edu.my'
 	},
 	{
 		name: 'EPIN',
 		prefix: 'Moe',
-		email: 'g-22132678@moe-dl.edu.my'
+		email: 'g-00921031@moe-dl.edu.my'
 	},
 	{
 		name: 'ICT',
